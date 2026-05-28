@@ -1,0 +1,14 @@
+{
+  "name": "baby-growth-shared",
+  "version": "1.0.0",
+  "description": "宝宝成长记录共享应用",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sql.js": "^1.10.0",
+    "uuid": "^9.0.0"
+  }
+}
