@@ -287,3 +287,4 @@ initDb().then(() => {
 }).catch(err => {
   console.error('Failed to init DB:', err);
 });
+// v2 - force redeploy
