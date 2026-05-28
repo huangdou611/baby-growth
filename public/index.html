@@ -21,145 +21,71 @@
     }
     .header h1 { font-size: 22px; font-weight: 600; letter-spacing: 1px; }
     .header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
-    .header .share-hint { font-size: 12px; opacity: 0.7; margin-top: 8px; }
     .container { max-width: 500px; margin: 0 auto; padding: 16px; }
-
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: #555;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
+    .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-title { font-size: 15px; font-weight: 600; color: #555; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .form-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
     .form-group { flex: 1; min-width: 100px; }
-    .form-group label {
-      display: block; font-size: 12px; color: #999; margin-bottom: 4px;
-    }
-    .form-group input, .form-group select {
-      width: 100%; padding: 10px 12px; border: 1.5px solid #eee;
-      border-radius: 10px; font-size: 15px; background: #fafafa;
-      transition: border 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus {
-      outline: none; border-color: #f5a0b8; background: #fff;
-    }
-
-    .btn {
-      width: 100%; padding: 14px; border: none; border-radius: 12px;
-      font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-    }
+    .form-group label { display: block; font-size: 12px; color: #999; margin-bottom: 4px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #eee; border-radius: 10px; font-size: 15px; background: #fafafa; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #f5a0b8; background: #fff; }
+    .btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
     .btn:active { opacity: 0.85; transform: scale(0.98); }
     .btn-primary { background: linear-gradient(135deg, #f8b4c8, #f5a0b8); color: #fff; }
     .btn-secondary { background: #f0f0f0; color: #666; font-size: 13px; padding: 10px; }
     .btn-outline { background: #fff; color: #f5a0b8; border: 1.5px solid #f5a0b8; font-size: 14px; padding: 10px; }
     .btn-danger { background: #ffe8e8; color: #e74c3c; font-size: 13px; padding: 10px; }
-    .btn-small { padding: 8px 16px; font-size: 13px; width: auto; display: inline-block; }
-    .btn-success { background: #e8f5e9; color: #2e7d32; }
-
-    .alert-banner {
-      background: #fff3e0; border: 1px solid #ffcc80; border-radius: 12px;
-      padding: 14px 16px; margin-bottom: 16px; display: flex;
-      align-items: center; gap: 10px; font-size: 14px; color: #e65100;
-    }
+    .btn-small { padding: 8px 16px; font-size: 13px; width: auto; }
+    .alert-banner { background: #fff3e0; border: 1px solid #ffcc80; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #e65100; }
     .alert-banner .icon { font-size: 20px; }
-
-    .record-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-bottom: 1px solid #f5f5f5;
-    }
-    .record-item:last-child { border-bottom: none; }
+    .record-item { padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+    .record-header { display: flex; justify-content: space-between; align-items: flex-start; }
     .record-date { font-size: 13px; color: #999; }
     .record-by { font-size: 11px; color: #ccc; margin-top: 2px; }
     .record-stats { text-align: right; }
     .record-stats .stat { font-size: 14px; color: #333; }
-    .delete-btn {
-      background: none; border: none; color: #ddd; font-size: 16px; cursor: pointer; padding: 4px 8px;
-    }
+    .record-photo { margin-top: 8px; max-width: 200px; }
+    .record-photo img { width: 100%; border-radius: 10px; cursor: pointer; }
+    .record-note { font-size: 12px; color: #aaa; margin-top: 4px; }
+    .delete-btn { background: none; border: none; color: #ddd; font-size: 16px; cursor: pointer; padding: 4px 8px; }
     .delete-btn:hover { color: #e74c3c; }
-
     .empty-state { text-align: center; padding: 30px 0; color: #ccc; }
     .empty-state .icon { font-size: 48px; margin-bottom: 10px; }
-
     .chart-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
-    .chart-tab {
-      flex: 1; padding: 8px; text-align: center; border-radius: 8px;
-      font-size: 13px; background: #f5f5f5; color: #999; cursor: pointer;
-      transition: all 0.2s; border: none;
-    }
+    .chart-tab { flex: 1; padding: 8px; text-align: center; border-radius: 8px; font-size: 13px; background: #f5f5f5; color: #999; cursor: pointer; border: none; }
     .chart-tab.active { background: #f8b4c8; color: #fff; font-weight: 600; }
-    .chart-area { margin-top: 8px; position: relative; }
-    #growthChart { width: 100%; height: 220px; border-radius: 8px; }
-
-    .tab-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
-      display: flex; border-top: 1px solid #f0f0f0;
-      max-width: 500px; margin: 0 auto; z-index: 100;
-    }
-    .tab-item {
-      flex: 1; padding: 10px 0 8px; text-align: center; font-size: 11px;
-      color: #aaa; cursor: pointer; transition: color 0.2s; border: none; background: none;
-    }
+    #growthChart { width: 100%; height: 300px; }
+    .chart-legend { font-size: 11px; color: #999; text-align: center; margin-top: 6px; }
+    .chart-legend span { display: inline-block; margin: 0 8px; }
+    .chart-legend .dot { display: inline-block; width: 10px; height: 3px; margin-right: 4px; vertical-align: middle; }
+    .tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; display: flex; border-top: 1px solid #f0f0f0; max-width: 500px; margin: 0 auto; z-index: 100; }
+    .tab-item { flex: 1; padding: 10px 0 8px; text-align: center; font-size: 11px; color: #aaa; cursor: pointer; border: none; background: none; }
     .tab-item.active { color: #f5a0b8; font-weight: 600; }
     .tab-item .tab-icon { font-size: 22px; display: block; margin-bottom: 2px; }
-
-    .member-tag {
-      display: inline-block; background: #fce4ec; color: #c62828;
-      font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px;
-    }
-    .member-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .member-chip {
-      background: #f5f5f5; padding: 6px 14px; border-radius: 20px;
-      font-size: 13px; display: flex; align-items: center; gap: 6px;
-    }
-    .member-chip .admin-badge {
-      background: #f8b4c8; color: #fff; font-size: 10px; padding: 1px 6px;
-      border-radius: 8px;
-    }
-
-    .share-box {
-      background: #f8f4ff; border: 1.5px dashed #d0bcff; border-radius: 12px;
-      padding: 16px; margin-top: 12px; text-align: center;
-    }
-    .share-code {
-      font-size: 28px; font-weight: 700; letter-spacing: 4px;
-      color: #7c4dff; margin: 8px 0; user-select: all;
-    }
-    .share-hint-small { font-size: 12px; color: #999; margin-top: 4px; }
-
+    .member-chip { background: #f5f5f5; padding: 6px 14px; border-radius: 20px; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; margin: 3px; }
+    .member-chip .admin-badge { background: #f8b4c8; color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+    .share-box { background: #f8f4ff; border: 1.5px dashed #d0bcff; border-radius: 12px; padding: 16px; margin-top: 12px; text-align: center; }
+    .share-code { font-size: 28px; font-weight: 700; letter-spacing: 4px; color: #7c4dff; margin: 8px 0; user-select: all; }
+    .qr-code-box { margin: 12px auto; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1px solid #eee; border-radius: 12px; }
+    .qr-code-box img { width: 150px; height: 150px; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
-    /* Onboarding */
-    .onboarding {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, #f8b4c8, #f5a0b8);
-      z-index: 300; display: flex; align-items: center; justify-content: center; padding: 24px;
-    }
-    .onboarding-box {
-      background: #fff; border-radius: 24px; padding: 32px 24px;
-      width: 100%; max-width: 400px; text-align: center;
-    }
+    .onboarding { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #f8b4c8, #f5a0b8); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .onboarding-box { background: #fff; border-radius: 24px; padding: 32px 24px; width: 100%; max-width: 400px; text-align: center; }
     .onboarding-box h2 { font-size: 24px; color: #333; margin-bottom: 6px; }
     .onboarding-box p { font-size: 14px; color: #999; margin-bottom: 24px; }
     .onboarding-box .big-icon { font-size: 64px; margin-bottom: 16px; }
-    .or-divider { margin: 16px 0; color: #ddd; font-size: 13px; position: relative; }
-    .or-divider::before, .or-divider::after {
-      content: ''; position: absolute; top: 50%; width: 40%;
-      height: 1px; background: #eee;
-    }
-    .or-divider::before { left: 0; }
-    .or-divider::after { right: 0; }
+    .or-divider { margin: 16px 0; color: #ddd; font-size: 13px; text-align: center; }
+    .photo-upload-area { border: 2px dashed #ddd; border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; background: #fafafa; margin-bottom: 12px; }
+    .photo-upload-area .photo-icon { font-size: 32px; }
+    .photo-upload-area .photo-text { font-size: 13px; color: #999; margin-top: 6px; }
+    .photo-preview { position: relative; display: inline-block; margin-bottom: 12px; }
+    .photo-preview img { max-height: 150px; border-radius: 12px; }
+    .photo-preview .remove-photo { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: #fff; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; }
+    .photo-viewer { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 400; align-items: center; justify-content: center; }
+    .photo-viewer.show { display: flex; }
+    .photo-viewer img { max-width: 95vw; max-height: 95vh; border-radius: 8px; }
+    .photo-viewer .close-viewer { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 32px; background: none; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -168,16 +94,12 @@
       <div class="big-icon">👶</div>
       <h2>宝宝成长记录</h2>
       <p>全家一起记录宝宝的每一次成长</p>
-
       <div class="form-group" style="margin-bottom:12px;text-align:left;">
         <label>你的称呼（妈妈/爸爸/奶奶...）</label>
         <input type="text" id="onboardName" placeholder="例如：妈妈" />
       </div>
-
       <button class="btn btn-primary" onclick="createFamily()">🏠 创建我的家庭</button>
-
-      <div class="or-divider">或者</div>
-
+      <div class="or-divider" style="margin:16px 0;color:#ddd;font-size:13px;">或者</div>
       <p style="font-size:13px;color:#666;margin-bottom:10px;">已有家庭？输入家庭码加入</p>
       <div class="form-group" style="margin-bottom:12px;text-align:left;">
         <label>家庭码</label>
@@ -190,110 +112,72 @@
   <div id="mainApp" style="display:none;">
     <div class="header">
       <h1 id="headerTitle">🌸 宝宝成长记录</h1>
-      <p id="headerSub">记录每一次成长，见证每一天变化</p>
-      <div class="share-hint" id="shareHint" style="display:none;">📋 家庭码已复制，分享给家人即可一起记录</div>
+      <p id="headerSub">记录每一次成长</p>
     </div>
-
     <div class="container">
-      <!-- 提醒 -->
-      <div class="alert-banner" id="alertBanner" style="display:none;">
-        <span class="icon">⏰</span>
-        <span id="alertText">已经 7 天没有记录啦！</span>
-      </div>
-
-      <!-- 记录 -->
+      <div class="alert-banner" id="alertBanner" style="display:none;"><span class="icon">⏰</span><span id="alertText">已经 7 天没有记录啦！</span></div>
       <div class="tab-content active" id="tabRecord">
         <div class="card">
           <div class="card-title">📝 记录今天</div>
           <div class="form-row">
-            <div class="form-group">
-              <label>身高 (cm)</label>
-              <input type="number" id="heightInput" step="0.1" min="0" placeholder="0.0" />
-            </div>
-            <div class="form-group">
-              <label>体重 (kg)</label>
-              <input type="number" id="weightInput" step="0.01" min="0" placeholder="0.00" />
-            </div>
-            <div class="form-group">
-              <label>头围 (cm)</label>
-              <input type="number" id="headInput" step="0.1" min="0" placeholder="0.0" />
-            </div>
+            <div class="form-group"><label>身高 (cm)</label><input type="number" id="heightInput" step="0.1" min="0" placeholder="0.0" /></div>
+            <div class="form-group"><label>体重 (kg)</label><input type="number" id="weightInput" step="0.01" min="0" placeholder="0.00" /></div>
+            <div class="form-group"><label>头围 (cm)</label><input type="number" id="headInput" step="0.1" min="0" placeholder="0.0" /></div>
           </div>
           <div class="form-row" style="gap:8px;">
-            <div class="form-group" style="min-width:80px;flex:0;">
-              <label>日期</label>
-              <input type="date" id="recordDate" />
-            </div>
-            <div class="form-group" style="flex:1;">
-              <label>备注（可选）</label>
-              <input type="text" id="noteInput" placeholder="长牙了/会翻身了..." />
-            </div>
+            <div class="form-group" style="min-width:80px;flex:0;"><label>日期</label><input type="date" id="recordDate" /></div>
+            <div class="form-group" style="flex:1;"><label>备注</label><input type="text" id="noteInput" placeholder="长牙了/会翻身了..." /></div>
           </div>
+          <div id="photoUploadArea" class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
+            <div class="photo-icon">📸</div><div class="photo-text">点击拍照或选择照片</div>
+          </div>
+          <div id="photoPreview" style="display:none;" class="photo-preview">
+            <img id="previewImg" src="" /><button class="remove-photo" onclick="removePhoto()">✕</button>
+          </div>
+          <input type="file" id="photoInput" accept="image/*" capture="environment" style="display:none" onchange="onPhotoSelected(event)" />
           <button class="btn btn-primary" onclick="saveRecord()">✓ 保存记录</button>
         </div>
-
         <div class="card">
           <div class="card-title">📋 最近记录</div>
-          <div id="recordList">
-            <div class="empty-state">
-              <div class="icon">📊</div>
-              <p>还没有记录，快来添加第一条吧</p>
-            </div>
-          </div>
+          <div id="recordList"><div class="empty-state"><div class="icon">📊</div><p>还没有记录</p></div></div>
         </div>
       </div>
-
-      <!-- 曲线 -->
       <div class="tab-content" id="tabChart">
         <div class="card">
-          <div class="card-title">📈 生长曲线</div>
+          <div class="card-title">📈 生长曲线 <span style="font-size:11px;color:#aaa;font-weight:400;">（虚线为WHO参考线）</span></div>
           <div class="chart-tabs">
-            <button class="chart-tab active" data-chart="height" onclick="switchChart('height', this)">身高</button>
-            <button class="chart-tab" data-chart="weight" onclick="switchChart('weight', this)">体重</button>
-            <button class="chart-tab" data-chart="head" onclick="switchChart('head', this)">头围</button>
+            <button class="chart-tab active" data-chart="height" onclick="switchChart('height',this)">身高</button>
+            <button class="chart-tab" data-chart="weight" onclick="switchChart('weight',this)">体重</button>
+            <button class="chart-tab" data-chart="head" onclick="switchChart('head',this)">头围</button>
           </div>
-          <div class="chart-area">
-            <canvas id="growthChart"></canvas>
-            <p style="text-align:center;font-size:12px;color:#ccc;margin-top:6px;">* 数据点少于 2 个时图表暂不显示</p>
+          <canvas id="growthChart"></canvas>
+          <div class="chart-legend">
+            <span><span class="dot" style="background:#f5a0b8;"></span>宝宝数据</span>
+            <span><span class="dot" style="background:#ddd;border:1px dashed #bbb;"></span>WHO参考线</span>
           </div>
         </div>
       </div>
-
-      <!-- 家庭 -->
       <div class="tab-content" id="tabFamily">
         <div class="card">
           <div class="card-title">👨‍👩‍👧‍👦 家庭成员</div>
           <div id="memberList"></div>
-
           <div class="share-box">
-            <div style="font-size:14px;color:#7c4dff;font-weight:600;">📤 分享家庭码</div>
+            <div style="font-size:14px;color:#7c4dff;font-weight:600;">📤 分享给家人</div>
+            <p style="font-size:12px;color:#999;margin:6px 0;">扫码或输入家庭码加入</p>
+            <div class="qr-code-box" id="qrCodeBox"><div style="color:#ccc;font-size:12px;">加载中...</div></div>
             <div class="share-code" id="shareCodeDisplay">------</div>
             <button class="btn btn-small btn-outline" onclick="copyShareCode()">📋 复制家庭码</button>
-            <div class="share-hint-small">家人打开页面 → 输入这个码即可加入</div>
           </div>
         </div>
-
         <div class="card">
           <div class="card-title">⚙️ 设置</div>
           <div class="form-row">
-            <div class="form-group" style="flex:2;">
-              <label>宝宝名字</label>
-              <input type="text" id="babyName" placeholder="输入宝宝名字" />
-            </div>
-            <div class="form-group">
-              <label>出生日期</label>
-              <input type="date" id="birthDate" />
-            </div>
+            <div class="form-group" style="flex:2;"><label>宝宝名字</label><input type="text" id="babyName" /></div>
+            <div class="form-group"><label>出生日期</label><input type="date" id="birthDate" /></div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>提醒间隔（天）</label>
-              <input type="number" id="remindDays" min="1" max="30" value="7" />
-            </div>
-          </div>
+          <div class="form-row"><div class="form-group"><label>提醒间隔（天）</label><input type="number" id="remindDays" min="1" max="30" value="7" /></div></div>
           <button class="btn btn-primary" onclick="saveSettings()">保存设置</button>
         </div>
-
         <div class="card">
           <button class="btn btn-secondary" onclick="exportData()">📤 导出数据</button>
           <div style="margin-top:8px;"></div>
@@ -301,389 +185,178 @@
         </div>
       </div>
     </div>
-
     <div class="tab-bar">
-      <button class="tab-item active" onclick="switchTab('tabRecord', this)">
-        <span class="tab-icon">📝</span>记录
-      </button>
-      <button class="tab-item" onclick="switchTab('tabChart', this)">
-        <span class="tab-icon">📈</span>曲线
-      </button>
-      <button class="tab-item" onclick="switchTab('tabFamily', this)">
-        <span class="tab-icon">👨‍👩‍👧‍👦</span>家庭
-      </button>
+      <button class="tab-item active" onclick="switchTab('tabRecord',this)"><span class="tab-icon">📝</span>记录</button>
+      <button class="tab-item" onclick="switchTab('tabChart',this)"><span class="tab-icon">📈</span>曲线</button>
+      <button class="tab-item" onclick="switchTab('tabFamily',this)"><span class="tab-icon">👨‍👩‍👧‍👦</span>家庭</button>
     </div>
+  </div>
+  <div class="photo-viewer" id="photoViewer" onclick="closeViewer()">
+    <button class="close-viewer">✕</button>
+    <img id="viewerImg" src="" />
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
-    // ========== 配置 ==========
     const API = '';
+    const SK = 'baby_g...ared';
+    function gS(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
+    function sS(d){localStorage.setItem(SK,JSON.stringify(d))}
 
-    // ========== 存储 ==========
-    const STORE_KEY = 'baby_growth_shared';
+    const st=gS();
+    if(st.familyId&&st.memberId){document.getElementById('onboarding').style.display='none';document.getElementById('mainApp').style.display='block';loadApp()}
 
-    function getStore() {
-      try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; }
+    let pp=null;
+    function onPhotoSelected(e){
+      const f=e.target.files[0];if(!f)return;
+      const r=new FileReader();
+      r.onload=function(ev){document.getElementById('photoUploadArea').style.display='none';document.getElementById('photoPreview').style.display='inline-block';document.getElementById('previewImg').src=ev.target.result;pp=f};
+      r.readAsDataURL(f)
     }
-    function setStore(data) {
-      localStorage.setItem(STORE_KEY, JSON.stringify(data));
+    function removePhoto(){pp=null;document.getElementById('photoUploadArea').style.display='block';document.getElementById('photoPreview').style.display='none';document.getElementById('photoInput').value=''}
+    async function upPhoto(f){const fd=new FormData();fd.append('photo',f);const r=await fetch(API+'/api/upload',{method:'POST',body:fd});return(await r.json()).url}
+    function openViewer(s){document.getElementById('viewerImg').src=s;document.getElementById('photoViewer').classList.add('show')}
+    function closeViewer(){document.getElementById('photoViewer').classList.remove('show')}
+
+    async function createFamily(){
+      const n=document.getElementById('onboardName').value.trim()||'妈妈';const btn=event.target;btn.disabled=true;btn.textContent='⏳';
+      try{const r=await fetch(API+'/api/family',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({memberName:n})});const d=await r.json();sS({familyId:d.familyId,memberId:d.memberId,memberName:d.memberName});document.getElementById('onboarding').style.display='none';document.getElementById('mainApp').style.display='block';loadApp()}catch(e){alert('创建失败')}
+      btn.disabled=false;btn.textContent='🏠 创建我的家庭'
     }
-
-    // ========== 初始化检查 ==========
-    const store = getStore();
-    if (store.familyId && store.memberId) {
-      document.getElementById('onboarding').style.display = 'none';
-      document.getElementById('mainApp').style.display = 'block';
-      loadApp();
-    }
-
-    // ========== 创建家庭 ==========
-    async function createFamily() {
-      const name = document.getElementById('onboardName').value.trim() || '妈妈';
-      const btn = event.target; btn.disabled = true; btn.textContent = '⏳ 创建中...';
-
-      try {
-        const res = await fetch(API + '/api/family', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ memberName: name })
-        });
-        if (!res.ok) throw new Error('创建失败');
-        const data = await res.json();
-        setStore({ familyId: data.familyId, memberId: data.memberId, memberName: data.memberName });
-        document.getElementById('onboarding').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
-        loadApp();
-      } catch (e) {
-        alert('创建失败，请稍后重试');
-      }
-      btn.disabled = false; btn.textContent = '🏠 创建我的家庭';
+    async function joinFamily(){
+      const c=document.getElementById('onboardCode').value.trim();const n=document.getElementById('onboardName').value.trim()||'家人';
+      if(!c){alert('请输入家庭码');return}
+      const btn=event.target;btn.disabled=true;btn.textContent='⏳';
+      try{const r=await fetch(API+'/api/family/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({shareCode:c,memberName:n})});if(!r.ok){alert('家庭码无效');btn.disabled=false;btn.textContent='🤝 加入家庭';return}const d=await r.json();sS({familyId:d.familyId,memberId:d.memberId,memberName:n});document.getElementById('onboarding').style.display='none';document.getElementById('mainApp').style.display='block';loadApp()}catch(e){alert('加入失败')}
+      btn.disabled=false;btn.textContent='🤝 加入家庭'
     }
 
-    // ========== 加入家庭 ==========
-    async function joinFamily() {
-      const code = document.getElementById('onboardCode').value.trim();
-      const name = document.getElementById('onboardName').value.trim() || '家人';
-      if (!code) { alert('请输入家庭码'); return; }
-
-      const btn = event.target; btn.disabled = true; btn.textContent = '⏳ 加入中...';
-
-      try {
-        const res = await fetch(API + '/api/family/join', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ shareCode: code, memberName: name })
-        });
-        if (!res.ok) { alert('家庭码无效，请检查后重试'); btn.disabled = false; btn.textContent = '🤝 加入家庭'; return; }
-        const data = await res.json();
-        setStore({ familyId: data.familyId, memberId: data.memberId, memberName: name });
-        document.getElementById('onboarding').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
-        loadApp();
-      } catch (e) {
-        alert('加入失败，请稍后重试');
-      }
-      btn.disabled = false; btn.textContent = '🤝 加入家庭';
+    async function loadApp(){
+      const s=gS();if(!s.familyId)return;
+      const fr=await fetch(API+'/api/family/'+s.familyId);if(!fr.ok)return;
+      const f=await fr.json();
+      document.getElementById('headerTitle').textContent='🌸 '+f.name+' 的成长记录';
+      document.getElementById('headerSub').textContent=f.members.length+'位家人共同记录';
+      document.getElementById('babyName').value=f.name;
+      document.getElementById('birthDate').value=f.birth_date||'';
+      document.getElementById('remindDays').value=f.remind_days||7;
+      document.getElementById('shareCodeDisplay').textContent=f.id;
+      let m='';f.members.forEach(function(mb){m+='<span class="member-chip">'+mb.name+(mb.is_admin?' <span class="admin-badge">创建者</span>':'')+'</span>'});
+      document.getElementById('memberList').innerHTML=m;
+      document.getElementById('recordDate').value=new Date().toISOString().split('T')[0];
+      var url=window.location.href.split('?')[0].split('#')[0];
+      document.getElementById('qrCodeBox').innerHTML='<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent(url)+'" />';
+      await loadRecords();await checkReminder()
     }
 
-    // ========== 加载应用 ==========
-    async function loadApp() {
-      const store = getStore();
-      if (!store.familyId) return;
-
-      // 加载家庭信息
-      const famRes = await fetch(API + '/api/family/' + store.familyId);
-      if (!famRes.ok) { alert('家庭信息加载失败'); return; }
-      const family = await famRes.json();
-
-      document.getElementById('headerTitle').textContent = `🌸 ${family.name} 的成长记录`;
-      document.getElementById('headerSub').textContent = `记录每一次成长 · ${family.members.length}位家人`;
-
-      document.getElementById('babyName').value = family.name;
-      document.getElementById('birthDate').value = family.birth_date || '';
-      document.getElementById('remindDays').value = family.remind_days || 7;
-      document.getElementById('shareCodeDisplay').textContent = family.id;
-
-      // 加载家庭成员
-      let memberHtml = '';
-      family.members.forEach(m => {
-        memberHtml += `<div class="member-chip">
-          ${m.name}
-          ${m.is_admin ? '<span class="admin-badge">创建者</span>' : ''}
-        </div>`;
+    async function loadRecords(){
+      const s=gS();if(!s.familyId)return;
+      const r=await fetch(API+'/api/records/'+s.familyId);if(!r.ok)return;
+      const recs=await r.json();const c=document.getElementById('recordList');
+      if(!recs.length){c.innerHTML='<div class="empty-state"><div class="icon">📊</div><p>还没有记录</p></div>';return}
+      let h='';
+      recs.forEach(function(rr){
+        var p=[];if(rr.height!==null)p.push('身高 '+rr.height+'cm');if(rr.weight!==null)p.push('体重 '+rr.weight+'kg');if(rr.head!==null)p.push('头围 '+rr.head+'cm');
+        h+='<div class="record-item"><div class="record-header"><div><div class="record-date">'+rr.date+' <span class="record-by">✏️ '+(rr.member_name||'未知')+'</span></div>';
+        if(rr.note)h+='<div class="record-note">💬 '+rr.note+'</div>';
+        h+='</div><div style="display:flex;align-items:center;gap:6px;"><div class="record-stats"><div class="stat">'+(p.join(' | ')||'')+'</div></div><button class="delete-btn" onclick="deleteRecord(\''+rr.id+'\')">✕</button></div></div>';
+        if(rr.photo)h+='<div class="record-photo"><img src="'+API+rr.photo+'" onclick="openViewer(\''+API+rr.photo+'\')" loading="lazy" /></div>';
+        h+='</div>'
       });
-      document.getElementById('memberList').innerHTML = memberHtml;
-
-      // 默认日期为今天
-      document.getElementById('recordDate').value = new Date().toISOString().split('T')[0];
-
-      // 加载记录
-      await loadRecords();
-      // 检查提醒
-      await checkReminder();
+      c.innerHTML=h;
+      if(document.getElementById('tabChart').classList.contains('active'))renderChart(ct)
     }
 
-    // ========== 记录 ==========
-    async function loadRecords() {
-      const store = getStore();
-      if (!store.familyId) return;
-      const res = await fetch(API + '/api/records/' + store.familyId);
-      if (!res.ok) return;
-      const records = await res.json();
-
-      const container = document.getElementById('recordList');
-      if (records.length === 0) {
-        container.innerHTML = `<div class="empty-state"><div class="icon">📊</div><p>还没有记录，快来添加第一条吧</p></div>`;
-        return;
-      }
-
-      let html = '';
-      records.forEach(r => {
-        const parts = [];
-        if (r.height !== null) parts.push(`身高 ${r.height}cm`);
-        if (r.weight !== null) parts.push(`体重 ${r.weight}kg`);
-        if (r.head !== null) parts.push(`头围 ${r.head}cm`);
-
-        html += `<div class="record-item">
-          <div>
-            <div class="record-date">${r.date}</div>
-            <div class="record-by">✏️ ${r.member_name || '未知'}</div>
-          </div>
-          <div class="record-stats">
-            <div class="stat">${parts.join(' | ') || '无数据'}</div>
-          </div>
-          <button class="delete-btn" onclick="deleteRecord('${r.id}')">✕</button>
-        </div>`;
-      });
-      container.innerHTML = html;
-
-      // 刷新图表
-      if (document.getElementById('tabChart').classList.contains('active')) {
-        renderChart(currentChartType);
-      }
+    async function saveRecord(){
+      const s=gS();if(!s.familyId)return;
+      const h=parseFloat(document.getElementById('heightInput').value);
+      const w=parseFloat(document.getElementById('weightInput').value);
+      const hd=parseFloat(document.getElementById('headInput').value);
+      const dt=document.getElementById('recordDate').value;
+      const nt=document.getElementById('noteInput').value.trim();
+      if(isNaN(h)&&isNaN(w)&&isNaN(hd)&&!pp){alert('请至少填一项或拍照');return}
+      var pu=null;if(pp){try{pu=await upPhoto(pp)}catch(e){alert('照片上传失败');return}}
+      const r=await fetch(API+'/api/records',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({familyId:s.familyId,memberId:s.memberId,date:dt,height:isNaN(h)?null:h,weight:isNaN(w)?null:w,head:isNaN(hd)?null:hd,note:nt,photo:pu})});
+      if(!r.ok){alert('保存失败');return}
+      ['heightInput','weightInput','headInput','noteInput'].forEach(function(id){document.getElementById(id).value=''});
+      removePhoto();await loadRecords();await checkReminder();alert('✅ 记录成功！')
     }
 
-    async function saveRecord() {
-      const store = getStore();
-      if (!store.familyId) return;
+    async function deleteRecord(id){if(!confirm('确定删除？'))return;await fetch(API+'/api/records/'+id,{method:'DELETE'});await loadRecords()}
 
-      const height = parseFloat(document.getElementById('heightInput').value);
-      const weight = parseFloat(document.getElementById('weightInput').value);
-      const head = parseFloat(document.getElementById('headInput').value);
-      const date = document.getElementById('recordDate').value;
-      const note = document.getElementById('noteInput').value.trim();
-
-      if (isNaN(height) && isNaN(weight) && isNaN(head)) {
-        alert('请至少填写一项数据（身高/体重/头围）');
-        return;
-      }
-
-      const res = await fetch(API + '/api/records', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          familyId: store.familyId,
-          memberId: store.memberId,
-          date,
-          height: isNaN(height) ? null : height,
-          weight: isNaN(weight) ? null : weight,
-          head: isNaN(head) ? null : head,
-          note
-        })
-      });
-
-      if (!res.ok) { alert('保存失败，请稍后重试'); return; }
-
-      document.getElementById('heightInput').value = '';
-      document.getElementById('weightInput').value = '';
-      document.getElementById('headInput').value = '';
-      document.getElementById('noteInput').value = '';
-
-      await loadRecords();
-      await checkReminder();
-      alert('✅ 记录成功！');
+    async function checkReminder(){
+      const s=gS();if(!s.familyId)return;
+      const r=await fetch(API+'/api/reminder/'+s.familyId);if(!r.ok)return;
+      const d=await r.json();document.getElementById('alertBanner').style.display=d.needRemind?'flex':'none';document.getElementById('alertText').textContent=d.message
     }
 
-    async function deleteRecord(id) {
-      if (!confirm('确定删除这条记录？')) return;
-      await fetch(API + '/api/records/' + id, { method: 'DELETE' });
-      await loadRecords();
+    const WHO=[[0,49.9,3.3,34.5],[1,54.7,4.3,37.3],[2,58.4,5.2,39.1],[3,61.4,5.8,40.5],[4,63.9,6.4,41.7],[5,65.9,6.9,42.7],[6,67.6,7.3,43.5],[7,69.2,7.6,44.1],[8,70.6,8.0,44.6],[9,72.0,8.3,45.0],[10,73.3,8.6,45.4],[11,74.5,8.8,45.7],[12,75.7,9.1,46.0],[13,76.9,9.3,46.3],[14,78.0,9.5,46.5],[15,79.1,9.7,46.7],[16,80.2,9.9,46.9],[17,81.2,10.1,47.1],[18,82.3,10.3,47.3],[19,83.3,10.5,47.4],[20,84.3,10.7,47.6],[21,85.3,10.9,47.7],[22,86.3,11.0,47.9],[23,87.3,11.2,48.0],[24,88.3,11.3,48.1]];
+    var ci=null,ct='height';
+
+    function gw(t,m){
+      var c={height:1,weight:2,head:3}[t];
+      if(m<=0)return WHO[0][c];if(m>=24)return WHO[24][c];
+      for(var i=0;i<WHO.length-1;i++){if(m>=WHO[i][0]&&m<=WHO[i+1][0]){var t=(m-WHO[i][0])/(WHO[i+1][0]-WHO[i][0]);return WHO[i][c]+t*(WHO[i+1][c]-WHO[i][c])}}
+      return WHO[24][c]
     }
 
-    // ========== 提醒 ==========
-    async function checkReminder() {
-      const store = getStore();
-      if (!store.familyId) return;
-      const res = await fetch(API + '/api/reminder/' + store.familyId);
-      if (!res.ok) return;
-      const data = await res.json();
+    async function renderChart(type){
+      const s=gS();if(!s.familyId)return;
+      const r=await fetch(API+'/api/records/'+s.familyId);if(!r.ok)return;
+      var recs=await r.json();
+      var sorted=recs.filter(function(rr){return rr[type]!==null}).sort(function(a,b){return a.date.localeCompare(b.date)});
+      if(sorted.length<2){if(ci){ci.destroy();ci=null}return}
 
-      const banner = document.getElementById('alertBanner');
-      const text = document.getElementById('alertText');
+      const fr=await fetch(API+'/api/family/'+s.familyId);const f=await fr.json();const bd=f.birth_date;
 
-      if (data.needRemind) {
-        banner.style.display = 'flex';
-        text.textContent = data.message;
-      } else {
-        banner.style.display = 'none';
-      }
+      var lbl=sorted.map(function(rr){var d=new Date(rr.date);return(d.getMonth()+1)+'/'+d.getDate()});
+      var dt=sorted.map(function(rr){return rr[type]});
+      var wd=null;
+      if(bd){var birth=new Date(bd);wd=sorted.map(function(rr){var d=new Date(rr.date);var m=(d.getFullYear()-birth.getFullYear())*12+(d.getMonth()-birth.getMonth());return m>=0?gw(type,m):null})}
+
+      var lm={height:'身高 (cm)',weight:'体重 (kg)',head:'头围 (cm)'};
+      var cm={height:'#f5a0b8',weight:'#81c784',head:'#64b5f6'};
+      var ctx=document.getElementById('growthChart').getContext('2d');
+      if(ci)ci.destroy();
+
+      var ds=[{label:lm[type],data:dt,borderColor:cm[type],backgroundColor:cm[type]+'20',borderWidth:3,pointRadius:4,pointBackgroundColor:'#fff',pointBorderColor:cm[type],pointBorderWidth:2,tension:0.3,fill:true}];
+      if(wd)ds.push({label:'WHO 参考',data:wd,borderColor:'#bbb',backgroundColor:'transparent',borderWidth:2,borderDash:[6,3],pointRadius:0,fill:false});
+
+      ci=new Chart(ctx,{type:'line',data:{labels:lbl,datasets:ds},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+ctx.parsed.y+(type==='weight'?'kg':'cm')}}}},scales:{y:{beginAtZero:false,grid:{color:'#f5f5f5'}},x:{grid:{display:false},ticks:{autoSkip:true,maxTicksLimit:15}}}}})
     }
 
-    // ========== 图表 ==========
-    let chartInstance = null;
-    let currentChartType = 'height';
-    let allRecords = [];
-
-    async function renderChart(type) {
-      const store = getStore();
-      if (!store.familyId) return;
-
-      const res = await fetch(API + '/api/records/' + store.familyId);
-      if (!res.ok) return;
-      allRecords = await res.json();
-
-      const sorted = [...allRecords].sort((a, b) => new Date(a.date) - new Date(b.date));
-      if (sorted.length < 2) {
-        if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-        return;
-      }
-
-      const labels = sorted.map(r => {
-        const d = new Date(r.date);
-        return `${d.getMonth()+1}/${d.getDate()}`;
-      });
-
-      const fieldMap = { height: 'height', weight: 'weight', head: 'head' };
-      const field = fieldMap[type];
-      const labelMap = { height: '身高 (cm)', weight: '体重 (kg)', head: '头围 (cm)' };
-      const colorMap = { height: '#f5a0b8', weight: '#81c784', head: '#64b5f6' };
-
-      const data = sorted.map(r => r[field]);
-      const validData = data.filter(v => v !== null);
-      if (validData.length < 2) {
-        if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
-        return;
-      }
-
-      const ctx = document.getElementById('growthChart').getContext('2d');
-      if (chartInstance) chartInstance.destroy();
-
-      chartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [{
-            label: labelMap[type],
-            data: data.map(v => v !== null ? v : undefined),
-            borderColor: colorMap[type],
-            backgroundColor: colorMap[type] + '20',
-            borderWidth: 3,
-            pointRadius: 4,
-            pointBackgroundColor: '#fff',
-            pointBorderColor: colorMap[type],
-            pointBorderWidth: 2,
-            tension: 0.3,
-            fill: true,
-            spanGaps: false,
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: ctx => `${ctx.parsed.y}${type === 'height' ? 'cm' : type === 'weight' ? 'kg' : 'cm'}`
-              }
-            }
-          },
-          scales: {
-            y: { beginAtZero: false, grid: { color: '#f5f5f5' }, ticks: { font: { size: 11 } } },
-            x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 30, autoSkip: true, maxTicksLimit: 15 } }
-          }
-        }
-      });
+    function switchChart(t,btn){
+      ct=t;document.querySelectorAll('.chart-tab').forEach(function(el){el.classList.remove('active')});btn.classList.add('active');renderChart(t)
     }
 
-    function switchChart(type, btn) {
-      currentChartType = type;
-      document.querySelectorAll('.chart-tab').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-      renderChart(type);
+    function switchTab(id,btn){
+      document.querySelectorAll('.tab-item').forEach(function(el){el.classList.remove('active')});btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});document.getElementById(id).classList.add('active');
+      if(id==='tabChart')setTimeout(function(){renderChart(ct)},100)
     }
 
-    // ========== Tab切换 ==========
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-
-      if (tabId === 'tabChart') {
-        setTimeout(() => renderChart(currentChartType), 100);
-      }
-      if (tabId === 'tabFamily') {
-        loadApp();
-      }
+    async function saveSettings(){
+      const s=gS();if(!s.familyId)return;
+      const n=document.getElementById('babyName').value.trim()||'我家宝宝';
+      const bd=document.getElementById('birthDate').value;
+      const rd=parseInt(document.getElementById('remindDays').value)||7;
+      await fetch(API+'/api/family/'+s.familyId,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,birthDate:bd,remindDays:rd})});
+      document.getElementById('headerTitle').textContent='🌸 '+n+' 的成长记录';alert('✅ 设置已保存')
     }
 
-    // ========== 设置 ==========
-    async function saveSettings() {
-      const store = getStore();
-      if (!store.familyId) return;
-
-      const name = document.getElementById('babyName').value.trim() || '我家宝宝';
-      const birthDate = document.getElementById('birthDate').value;
-      const remindDays = parseInt(document.getElementById('remindDays').value) || 7;
-
-      await fetch(API + '/api/family/' + store.familyId, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, birthDate, remindDays })
-      });
-
-      document.getElementById('headerTitle').textContent = `🌸 ${name} 的成长记录`;
-      alert('✅ 设置已保存');
+    function copyShareCode(){
+      var c=document.getElementById('shareCodeDisplay').textContent;navigator.clipboard.writeText(c).then(function(){alert('家庭码已复制：'+c)}).catch(function(){alert('家庭码：'+c)})
     }
 
-    // ========== 分享 ==========
-    function copyShareCode() {
-      const code = document.getElementById('shareCodeDisplay').textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        const hint = document.getElementById('shareHint');
-        hint.style.display = 'block';
-        setTimeout(() => { hint.style.display = 'none'; }, 5000);
-      }).catch(() => {
-        alert('家庭码：' + code);
-      });
+    async function exportData(){
+      const s=gS();if(!s.familyId)return;
+      const r=await fetch(API+'/api/export/'+s.familyId);const d=await r.json();
+      var b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='宝宝成长记录_'+new Date().toISOString().split('T')[0]+'.json';a.click()
     }
 
-    // ========== 导出 ==========
-    async function exportData() {
-      const store = getStore();
-      if (!store.familyId) return;
-      const res = await fetch(API + '/api/export/' + store.familyId);
-      const data = await res.json();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `宝宝成长记录_${new Date().toISOString().split('T')[0]}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-    }
+    function resetApp(){if(!confirm('确定退出家庭？'))return;localStorage.removeItem(SK);location.reload()}
 
-    // ========== 重置 ==========
-    function resetApp() {
-      if (!confirm('确定退出当前家庭？退出后需要重新输入家庭码才能加入。')) return;
-      localStorage.removeItem(STORE_KEY);
-      location.reload();
-    }
-
-    // ========== 定时检查提醒 ==========
-    setInterval(() => checkReminder(), 60000);
+    setInterval(checkReminder,60000)
   </script>
 </body>
 </html>

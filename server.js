@@ -3,9 +3,30 @@ const initSqlJs = require('sql.js');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ========== 图片存储 ==========
+const PHOTO_DIR = path.join(__dirname, 'public', 'photos');
+if (!fs.existsSync(PHOTO_DIR)) fs.mkdirSync(PHOTO_DIR, 0o755);
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, PHOTO_DIR),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname) || '.jpg';
+    cb(null, `${uuidv4().slice(0,12)}${ext}`);
+  }
+});
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) cb(null, true);
+    else cb(new Error('仅支持图片文件'));
+  }
+});
 
 // ========== 数据库初始化（使用 sql.js） ==========
 const DB_PATH = path.join(__dirname, 'data', 'baby.db');
@@ -55,9 +76,12 @@ async function initDb() {
       weight REAL,
       head REAL,
       note TEXT,
+      photo TEXT,
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     )
   `);
+  // 兼容旧表：加 photo 列（如果不存在）
+  try { db.run(`ALTER TABLE records ADD COLUMN photo TEXT`); } catch(e) {}
   db.run(`CREATE INDEX IF NOT EXISTS idx_records_family ON records(family_id, date)`);
   db.run(`CREATE INDEX IF NOT EXISTS idx_records_date ON records(date)`);
 
@@ -150,15 +174,23 @@ app.patch('/api/family/:familyId', (req, res) => {
 
 // ========== API - 记录 ==========
 
+// ========== 图片上传 ==========
+app.post('/api/upload', upload.single('photo'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: '请选择图片' });
+  res.json({ url: '/photos/' + req.file.filename });
+});
+
+// ========== API - 记录 ==========
+
 app.post('/api/records', (req, res) => {
-  const { familyId, memberId, date, height, weight, head, note } = req.body;
+  const { familyId, memberId, date, height, weight, head, note, photo } = req.body;
   if (!familyId || !memberId) return res.status(400).json({ error: '缺少必要参数' });
 
   const id = uuidv4().slice(0, 8);
   const recordDate = date || new Date().toISOString().split('T')[0];
 
-  db.run(`INSERT INTO records (id, family_id, member_id, date, height, weight, head, note) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    [id, familyId, memberId, recordDate, height || null, weight || null, head || null, note || null]);
+  db.run(`INSERT INTO records (id, family_id, member_id, date, height, weight, head, note, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [id, familyId, memberId, recordDate, height || null, weight || null, head || null, note || null, photo || null]);
 
   saveDb();
   res.json({ id });
@@ -166,7 +198,7 @@ app.post('/api/records', (req, res) => {
 
 app.get('/api/records/:familyId', (req, res) => {
   const rows = db.exec(`
-    SELECT r.id, r.family_id, r.member_id, r.date, r.height, r.weight, r.head, r.note, r.created_at, m.name as member_name
+    SELECT r.id, r.family_id, r.member_id, r.date, r.height, r.weight, r.head, r.note, r.photo, r.created_at, m.name as member_name
     FROM records r
     LEFT JOIN members m ON r.member_id = m.id
     WHERE r.family_id = ?
