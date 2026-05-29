@@ -80,8 +80,13 @@ async function initDb() {
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     )
   `);
-  // 兼容旧表：加 photo 列（如果不存在）
-  try { db.run(`ALTER TABLE records ADD COLUMN photo TEXT`); } catch(e) {}
+    // 兼容旧表：加所有可能缺失的列
+  const alterCols = ['photo', 'head'];
+  alterCols.forEach(col => {
+    try { db.run(`ALTER TABLE records ADD COLUMN ${col} TEXT`); } catch(e) {}
+  });
+  try { db.run(`ALTER TABLE families ADD COLUMN remind_days INTEGER NOT NULL DEFAULT 7`); } catch(e) {}
+  try { db.run(`ALTER TABLE families ADD COLUMN birth_date TEXT`); } catch(e) {}
   db.run(`CREATE INDEX IF NOT EXISTS idx_records_family ON records(family_id, date)`);
   db.run(`CREATE INDEX IF NOT EXISTS idx_records_date ON records(date)`);
 
