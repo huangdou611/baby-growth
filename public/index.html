@@ -233,7 +233,7 @@
 
     async function loadApp(){
       const s=gS();if(!s.familyId)return;
-      const fr=await fetch(API+'/api/family/'+s.familyId);if(!fr.ok)return;
+      const fr=await fetch(API+'/api/family/'+s.familyId);if(!fr.ok){alert('加载家庭信息失败，请刷新重试');return;}
       const f=await fr.json();
       document.getElementById('headerTitle').textContent='🌸 '+f.name+' 的成长记录';
       document.getElementById('headerSub').textContent=f.members.length+'位家人共同记录';
