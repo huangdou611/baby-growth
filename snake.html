@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>💕 情侣贪吃蛇</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
+  body {
+    font-family: -apple-system,"PingFang SC",sans-serif;
+    background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);
+    min-height: 100vh; display:flex; justify-content:center; align-items:center; color:#fff; padding:16px;
+  }
+  .container { max-width:480px; width:100%; text-align:center; }
+  h1 { font-size:22px; margin-bottom:4px; background:linear-gradient(90deg,#ff6b6b,#ffa502); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .sub { font-size:12px; color:rgba(255,255,255,0.4); margin-bottom:10px; }
+  .role-page { display:flex; flex-direction:column; align-items:center; gap:20px; padding:40px 0; }
+  .role-cards { display:flex; gap:20px; width:100%; max-width:360px; }
+  .role-card { flex:1; background:rgba(255,255,255,0.06); border:2px solid rgba(255,255,255,0.1); border-radius:16px; padding:26px 10px; cursor:pointer; transition:all 0.2s; }
+  .role-card:active { transform:scale(0.95); }
+  .role-card .emoji { font-size:42px; }
+  .role-card .name { font-size:16px; font-weight:600; margin-top:6px; }
+  .role-card.red { border-color:#ff6b6b; background:rgba(255,107,107,0.08); }
+  .role-card.blue { border-color:#4a9eff; background:rgba(74,158,255,0.08); }
+  .role-card .hint { font-size:11px; color:rgba(255,255,255,0.3); margin-top:4px; }
+  .player-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 16px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:8px; }
+  .player-badge.red { background:rgba(255,107,107,0.2); color:#ff6b6b; }
+  .player-badge.blue { background:rgba(74,158,255,0.2); color:#4a9eff; }
+  canvas { display:block; margin:0 auto; border-radius:12px; box-shadow:0 0 30px rgba(255,107,107,0.15); background:#0a0a1a; width:100%; max-width:400px; aspect-ratio:1; }
+  .score-row { display:flex; justify-content:center; gap:30px; margin-top:8px; }
+  .score-item { text-align:center; }
+  .score-label { font-size:12px; color:rgba(255,255,255,0.4); }
+  .score-item.red .score-val { color:#ff6b6b; }
+  .score-item.blue .score-val { color:#4a9eff; }
+  .score-val { font-size:26px; font-weight:bold; }
+  .controls-area { margin-top:10px; }
+  .control-row { display:flex; gap:8px; justify-content:center; margin:4px 0; }
+  .dir-btn {
+    width:64px; height:64px; border-radius:50%; border:none;
+    background:rgba(255,255,255,0.08); color:#fff; font-size:24px;
+    display:inline-flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all 0.08s; touch-action:manipulation;
+  }
+  .dir-btn:active { background:rgba(255,255,255,0.2); }
+  .btn { padding:8px 20px; border:none; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; color:#fff; margin:8px 4px 0; }
+  .btn-start { background:linear-gradient(135deg,#ff6b6b,#ffa502); padding:10px 28px; font-size:14px; }
+  .btn-exit { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:8px 14px; font-size:11px; }
+  .status { font-size:13px; color:rgba(255,255,255,0.5); margin-top:6px; min-height:18px; }
+  .status.winner { color:#ffd700; font-size:16px; }
+  .hidden { display:none !important; }
+  .waiting { padding:40px 0; }
+  .waiting .emoji-big { font-size:48px; }
+  .waiting p { font-size:13px; color:rgba(255,255,255,0.5); margin:6px 0; }
+  .waiting .code { font-size:26px; font-weight:bold; color:#ffa502; letter-spacing:3px; background:rgba(255,255,255,0.05); padding:6px 20px; border-radius:10px; border:1px dashed rgba(255,165,2,0.3); display:inline-block; }
+</style>
+</head>
+<body>
+<div class="container">
+<div id="rolePage" class="role-page">
+  <h1>💕 双人贪吃蛇</h1>
+  <p class="sub">两个人各用一台手机，同时打开这个页面</p>
+  <div class="role-cards">
+    <div class="role-card red" onclick="choose(1)">
+      <div class="emoji">💃</div><div class="name">她</div>
+      <div class="hint">⬅️ ➡️ 左右</div>
+    </div>
+    <div class="role-card blue" onclick="choose(2)">
+      <div class="emoji">🕺</div><div class="name">他</div>
+      <div class="hint">⬆️ ⬇️ 上下</div>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:4px;">两人都选定后自动配对开始</p>
+</div>
+
+<div id="waitPage" class="waiting hidden">
+  <div class="emoji-big">💕</div>
+  <p>等待另一半加入...</p>
+  <div class="code" id="roomCode"></div>
+  <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:8px;">两人打开同个链接即可自动配对</p>
+</div>
+
+<div id="gamePage" class="hidden">
+  <div class="player-badge" id="myBadge">💃 她</div>
+  <canvas id="gc" width="400" height="400"></canvas>
+  <div class="score-row">
+    <div class="score-item red"><div class="score-label">💃 她</div><div class="score-val" id="s1">0</div></div>
+    <div class="score-item blue"><div class="score-label">🕺 他</div><div class="score-val" id="s2">0</div></div>
+  </div>
+  <div class="controls-area" id="ctrls"></div>
+  <div><button class="btn btn-start" id="startBtn">❤️ 开始</button></div>
+  <div class="status" id="status">选好角色等对方加入</div>
+</div>
+</div>
+
+<script>
+let c=document.getElementById('gc'),ctx=c.getContext('2d');
+let role=0,oppo=false,running=false,loop=null;
+let g={food:null,heart:null,over:false,winner:null,sc1:0,sc2:0,t:0};
+let s1=null,s2=null;
+const G=15,S=400,CE=S/G;
+
+function genId(){return Math.random().toString(36).substring(2,6).toUpperCase();}
+let rid=genId();
+
+// 使用localStorage进行同源通信（两台手机需在同一浏览器或通过同一域名访问）
+// 如果不同源，使用BroadcastChannel
+let bc=null;
+try{
+  bc=new BroadcastChannel('snake_'+rid);
+  bc.onmessage=e=>onMsg(e.data);
+}catch(e){
+  window.addEventListener('storage',e=>{
+    if(e.key==='***_'+rid)try{onMsg(JSON.parse(e.newValue));}catch(ex){}
+  });
+}
+function send(t,d){
+  let m={type:t,data:d,room:rid,from:role};
+  if(bc)bc.postMessage(m);
+  else{localStorage.setItem('***_'+rid,JSON.stringify(m));localStorage.removeItem('***_'+rid);}
+}
+
+function onMsg(m){
+  if(m.room!==rid||m.from===role)return;
+  switch(m.type){
+    case 'join':
+      oppo=true;
+      document.getElementById('waitPage').classList.add('hidden');
+      document.getElementById('gamePage').classList.remove('hidden');
+      setup();
+      break;
+    case 'dir':
+      if(role===1)s2.nd=m.data;else s1.nd=m.data;
+      break;
+    case 'sync':
+      if(m.data){g=m.data.g;s1=m.data.s1;s2=m.data.s2;running=m.data.r;draw();}
+      break;
+    case 'go':
+      g=m.data.g;s1=m.data.s1;s2=m.data.s2;running=true;
+      document.getElementById('startBtn').textContent='⏸️';
+      document.getElementById('status').textContent='💕 游戏中...';
+      document.getElementById('status').className='status';
+      if(!loop)loop=setInterval(tick,150);
+      break;
+    case 'end':
+      g.over=true;g.winner=m.data.w;running=false;
+      document.getElementById('startBtn').textContent='❤️ 再来';
+      if(loop){clearInterval(loop);loop=null;}draw();
+      break;
+    case 'rst':
+      reset();break;
+  }
+}
+
+function choose(r){
+  role=r;
+  document.getElementById('rolePage').classList.add('hidden');
+  document.getElementById('waitPage').classList.remove('hidden');
+  document.getElementById('roomCode').textContent=rid;
+  setTimeout(()=>send('join'),200);
+  setTimeout(()=>{if(!oppo)send('join');},1500);
+}
+
+function setup(){
+  let p1=role===1;
+  document.getElementById('myBadge').textContent=p1?'💃 她 · ⬅️➡️':'🕺 他 · ⬆️⬇️';
+  document.getElementById('myBadge').className='player-badge '+(p1?'red':'blue');
+  let a=document.getElementById('ctrls');
+  if(p1){
+    a.innerHTML='<div><button class="dir-btn" data-d="left">⬅️</button><button class="dir-btn" data-d="right">➡️</button></div>';
+  }else{
+    a.innerHTML='<div><button class="dir-btn" data-d="up">⬆️</button></div><div><button class="dir-btn" data-d="down">⬇️</button></div>';
+  }
+  a.querySelectorAll('.dir-btn').forEach(b=>{
+    let d=b.dataset.d;
+    b.addEventListener('touchstart',e=>{e.preventDefault();go(d);});
+    b.addEventListener('mousedown',()=>go(d));
+  });
+  if(!s1)reset();
+  draw();
+}
+
+function go(d){
+  if(!running)return;
+  let v={left:{x:-1,y:0},right:{x:1,y:0},up:{x:0,y:-1},down:{x:0,y:1}}[d];
+  if(role===1)s1.nd=v;else s2.nd=v;
+  send('dir',v);
+}
+
+function initSnake(){
+  s1={b:[{x:3,y:7},{x:2,y:7},{x:1,y:7}],d:{x:1,y:0},nd:{x:1,y:0},sc:0,al:true,gp:0};
+  s2={b:[{x:11,y:7},{x:12,y:7},{x:13,y:7}],d:{x:-1,y:0},nd:{x:-1,y:0},sc:0,al:true,gp:0};
+  g={food:null,heart:null,over:false,winner:null,sc1:0,sc2:0,t:0};
+  spawn();
+}
+
+function spawn(){
+  let oc=new Set();
+  [...s1.b,...s2.b].forEach(p=>oc.add(p.x+','+p.y));
+  let av=[];
+  for(let x=0;x<G;x++)for(let y=0;y<G;y++)if(!oc.has(x+','+y))av.push({x,y});
+  if(!av.length)return;
+  if(!g.food){
+    g.food=av[~~(Math.random()*av.length)];
+    if(g.t>0&&g.t%5===0&&av.length>1){
+      let r=av.filter(p=>p.x!==g.food.x||p.y!==g.food.y);
+      if(r.length)g.heart=r[~~(Math.random()*r.length)];
+    }
+  }
+}
+
+function mvSnake(s){
+  s.d=s.nd;
+  let h={x:s.b[0].x+s.d.x,y:s.b[0].y+s.d.y};
+  if(h.x<0)h.x=G-1;if(h.x>=G)h.x=0;if(h.y<0)h.y=G-1;if(h.y>=G)h.y=0;
+  s.b.unshift(h);
+  if(s.gp>0)s.gp--;else s.b.pop();
+  let hd=s.b[0];
+  if(g.food&&hd.x===g.food.x&&hd.y===g.food.y){s.gp++;s.sc++;g.food=null;spawn();}
+  if(g.heart&&hd.x===g.heart.x&&hd.y===g.heart.y){s.gp++;s.sc+=2;g.heart=null;}
+}
+
+function tick(){
+  if(g.over)return;
+  g.t++;
+  mvSnake(s1);mvSnake(s2);
+  [s1,s2].forEach(s=>{
+    let h=s.b[0];
+    for(let i=1;i<s.b.length;i++)if(s.b[i].x===h.x&&s.b[i].y===h.y)s.al=false;
+  });
+  [s1,s2].forEach((s,i)=>{
+    let o=i===0?s2:s1,h=s.b[0];
+    for(let i=0;i<o.b.length;i++)if(o.b[i].x===h.x&&o.b[i].y===h.y)s.al=false;
+  });
+  g.sc1=s1.sc;g.sc2=s2.sc;
+  if(!s1.al&&!s2.al){g.over=true;g.winner=null;}
+  else if(!s1.al){g.over=true;g.winner=2;}
+  else if(!s2.al){g.over=true;g.winner=1;}
+  if(!g.food)spawn();
+  send('sync',{g,s1,s2,r:true});
+  draw();
+  if(g.over){
+    running=false;
+    document.getElementById('startBtn').textContent='❤️ 再来';
+    if(loop){clearInterval(loop);loop=null;}
+    send('end',{w:g.winner});
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,S,S);
+  ctx.fillStyle='#0a0a1a';ctx.fillRect(0,0,S,S);
+  ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=0.5;
+  for(let i=0;i<=G;i++){
+    ctx.beginPath();ctx.moveTo(i*CE,0);ctx.lineTo(i*CE,S);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,i*CE);ctx.lineTo(S,i*CE);ctx.stroke();
+  }
+  if(g.food){
+    let fx=g.food.x*CE+CE/2,fy=g.food.y*CE+CE/2;
+    ctx.shadowColor='rgba(255,215,0,0.5)';ctx.shadowBlur=12;
+    let gr=ctx.createRadialGradient(fx,fy,0,fx,fy,CE*0.35);
+    gr.addColorStop(0,'#ffd700');gr.addColorStop(0.7,'#ffb900');gr.addColorStop(1,'#ff8c00');
+    ctx.fillStyle=gr;ctx.beginPath();ctx.arc(fx,fy,CE*0.35,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=0;ctx.fillStyle='#2ed573';
+    ctx.beginPath();ctx.ellipse(fx+2,fy-CE*0.35-1,3,2,0.3,0,Math.PI*2);ctx.fill();
+  }
+  if(g.heart){
+    let hx=g.heart.x*CE+CE/2,hy=g.heart.y*CE+CE/2;
+    ctx.shadowColor='#ff6b9d';ctx.shadowBlur=15;
+    ctx.save();ctx.translate(hx,hy);ctx.scale(CE*0.3/15,CE*0.3/15);
+    ctx.fillStyle='#ff6b9d';ctx.beginPath();
+    ctx.moveTo(0,5);ctx.bezierCurveTo(-10,-5,-15,5,0,15);
+    ctx.bezierCurveTo(15,5,10,-5,0,5);ctx.fill();ctx.restore();
+  }
+  ctx.shadowBlur=0;
+  function drwSn(s,co,hc,gc){
+    if(!s)return;
+    ctx.shadowColor=gc;ctx.shadowBlur=8;
+    s.b.forEach((seg,i)=>{
+      let hd=i===0,pa=hd?1:2;
+      ctx.fillStyle=hd?hc:co;
+      if(hd){
+        ctx.beginPath();ctx.arc(seg.x*CE+CE/2,seg.y*CE+CE/2,CE/2-2,0,Math.PI*2);ctx.fill();
+        ctx.shadowBlur=0;ctx.fillStyle='#fff';
+        let cx=seg.x*CE+CE/2,cy=seg.y*CE+CE/2,d=s.d;
+        let ex1,ey1,ex2,ey2;
+        if(d.x===1){ex1=cx+3;ey1=cy-3;ex2=cx+3;ey2=cy+3;}
+        else if(d.x===-1){ex1=cx-3;ey1=cy-3;ex2=cx-3;ey2=cy+3;}
+        else if(d.y===-1){ex1=cx-3;ey1=cy-3;ex2=cx+3;ey2=cy-3;}
+        else{ex1=cx-3;ey1=cy+3;ex2=cx+3;ey2=cy+3;}
+        ctx.beginPath();ctx.arc(ex1,ey1,2.5,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(ex2,ey2,2.5,0,Math.PI*2);ctx.fill();
+        ctx.shadowBlur=8;ctx.shadowColor=gc;
+      }else{
+        ctx.beginPath();ctx.roundRect(seg.x*CE+pa,seg.y*CE+pa,CE-pa*2,CE-pa*2,3);ctx.fill();
+      }
+    });ctx.shadowBlur=0;
+  }
+  drwSn(s1,'#ff6b6b','#ff4757','rgba(255,107,107,0.3)');
+  drwSn(s2,'#4a9eff','#1e90ff','rgba(74,158,255,0.3)');
+  document.getElementById('s1').textContent=g.sc1;
+  document.getElementById('s2').textContent=g.sc2;
+  if(g.over){
+    ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,S,S);
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    let st=document.getElementById('status');
+    if(g.winner===null){
+      ctx.fillStyle='#ffd700';ctx.font='bold 22px sans-serif';
+      ctx.fillText('💞 平局！你们一样恩爱！',S/2,S/2-10);
+      st.textContent='💞 平局！';st.className='status winner';
+    }else{
+      let w=g.winner===1;
+      ctx.fillStyle=w?'#ff6b6b':'#4a9eff';ctx.font='bold 26px sans-serif';
+      ctx.fillText((w?'💃 ':'🕺 ')+(w?'她':'他')+' 赢了！',S/2,S/2-10);
+      ctx.fillStyle='rgba(255,255,255,0.5)';ctx.font='12px sans-serif';
+      ctx.fillText('❤️ 输了的人亲一下 ❤️',S/2,S/2+22);
+      st.textContent=(w?'💃 ':'🕺 ')+(w?'她':'他')+' 赢了！亲一下 ❤️';
+      st.className='status winner';
+    }
+    for(let i=0;i<12;i++){
+      let a=(i/12)*Math.PI*2+Date.now()*0.001;
+      let d=30+15*Math.sin(Date.now()*0.002+i);
+      ctx.font='12px sans-serif';
+      ctx.fillStyle='hsla('+((i*30+Date.now()*0.02)%360)+',100%,70%,0.5)';
+      ctx.fillText('❤️',S/2+Math.cos(a)*d-6,S/2+Math.sin(a)*d+4);
+    }
+  }
+}
+
+function reset(){
+  initSnake();
+  running=false;
+  document.getElementById('startBtn').textContent='❤️ 开始';
+  document.getElementById('status').textContent='已重置，点击开始 💑';
+  document.getElementById('status').className='status';
+  if(loop){clearInterval(loop);loop=null;}
+  draw();
+}
+
+document.getElementById('startBtn').addEventListener('click',()=>{
+  if(!s1)reset();
+  if(g.over)reset();
+  if(role!==1)return; // 只有「她」能开始
+  running=true;
+  document.getElementById('startBtn').textContent='⏸️';
+  document.getElementById('status').textContent='💕 游戏中...';
+  document.getElementById('status').className='status';
+  send('go',{g,s1,s2});
+  if(loop)clearInterval(loop);
+  loop=setInterval(tick,150);
+});
+
+document.addEventListener('keydown',e=>{
+  if(!running)return;
+  let k=e.key;
+  if(role===1&&(k==='ArrowLeft'||k==='ArrowRight')){
+    e.preventDefault();
+    let v=k==='ArrowLeft'?{x:-1,y:0}:{x:1,y:0};
+    s1.nd=v;send('dir',v);
+  }else if(role===2&&(k==='ArrowUp'||k==='ArrowDown')){
+    e.preventDefault();
+    let v=k==='ArrowUp'?{x:0,y:-1}:{x:0,y:1};
+    s2.nd=v;send('dir',v);
+  }
+});
+
+reset();
+</script>
+</body>
+</html>
